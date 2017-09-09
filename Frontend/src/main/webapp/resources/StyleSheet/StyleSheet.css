@@ -1,0 +1,175 @@
+
+
+body {
+    margin: 0px;
+    
+}
+.maincontainer {
+    width: 100%;
+    height: auto;
+    margin: 1px auto 0px auto;
+    border:none;;
+}
+
+ .main ul{
+                text-decoration: none;
+                list-style: none;
+                margin: 0;
+                padding: 0;
+                overflow: hidden;
+                position:relative;
+                top: 0px;
+                right: 0px;
+                left: 0px;
+                background-image: url("Images/pattern-07.jpg");
+                
+            }
+         
+           .main li {
+    float: left;
+}
+            .main li:nth-last-child(1 ){
+                border-right: 1px solid Black;
+            }
+           .main  li a {
+                
+                color: #f8ee2e;
+                text-align: center;
+                padding: 3px 12px;
+                text-decoration: none;
+                font-size: large;
+                border-bottom:Black;
+            }
+           .main li a:hover{
+    color:#860f08;
+    
+}
+.sr input{
+    width: 100px;
+    height: 20px;
+    box-sizing:border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 10px;
+    background-color: white;
+    padding: 12px 20px 12px 40px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+.sr input:focus {
+    width: 300%;
+}
+
+ .image{margin: 10px 0px 0px 450px;
+                padding: 0px;
+                width:30%;
+                height:auto;
+                border:none;
+                
+                
+}
+
+
+
+@media screen and (max-width: 900px) {
+    .nav ul li {
+        display: grid;
+    }
+
+    img {
+        width: 250px;
+        height: auto;
+        float: left;
+    }
+} 
+ .nav{
+    width: 90%;
+    height:auto;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    margin-left:75px;
+}
+.nav ul {
+    list-style-type: none;
+    margin-left: 0px;
+    padding: 0;
+    overflow: hidden;
+    background-color:#FFF8DC;
+    
+}
+
+.nav ul{
+    padding-left: 200px;
+                text-decoration: none;
+                list-style-type: none;
+                overflow: hidden;   
+            }
+.nav li:hover
+{
+visibility:inherit; 
+}
+.nav li
+{
+display:inline-block;
+zoom:1; 
+
+}
+.nav a
+{
+display:block;
+padding:12px 20px;
+text-decoration:none;
+font-style: normal;
+font-weight: bold;
+font-size: 12px;
+font-family:Times, "Times New Roman", Georgia, serif;
+ background-color:#FFF8DC;
+}
+.nav a, .nav a:visited, .nav li.active li a
+{
+
+color:#860f08;
+}
+.nav li
+{
+background:#E0E0E0;
+}
+.nav li:hover,  .nav a:focus, .nav a:hover, .nav a:active
+{
+background-color:#f57c75;
+}
+
+.nav li a:hover, #dropdown:hover #dropbtn {
+   background:#f57c75;
+}
+
+li#dropdown {
+    display: inline-block;
+}
+
+#dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+#dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+#dropdown-content a:hover {background-color: #f1f1f1}
+
+#dropdown:hover #dropdown-content {
+    display: inline-block;
+}</style>
+.border{
+border-collapse: collapse;
+border:1px solid black;
+}
