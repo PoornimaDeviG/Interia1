@@ -4,10 +4,13 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.niit.Backend.Dao.ProductDao;
+import com.niit.Backend.Model.Category;
+import com.niit.Backend.Dao.CategoryDao;
 import com.niit.Backend.Model.Product;
 
 @Controller
@@ -16,13 +19,17 @@ public class HomeController {
 	Product product;
 	@Autowired 
 	ProductDao productDao;
+	@Autowired
+	Category category;
+	@Autowired
+	CategoryDao categoryDao;
 	@RequestMapping("/")
 	public String home()
 	{
 		return "Home";
 	}
 	@RequestMapping("/Home")
-	public String Home()
+	public String home1()
 	{
 		return "Home";
 	}
@@ -53,16 +60,34 @@ public class HomeController {
 //		{
 //			return "User";
 //		}
-	@RequestMapping("/Furniture")
-	public ModelAndView Furniture()
+	@RequestMapping("/dispcategory/{cid}")
+	public ModelAndView dispcategory(@PathVariable("cid")String id)
 	{
-		ModelAndView obj=new ModelAndView("Furniture");
-		List<Product> lc=productDao.list();
+		List<Category> categories= categoryDao.list();
+		ModelAndView obj=new ModelAndView("Home");
+		List<Product> lc=productDao.getProductByCategory(id);
 		obj.addObject("products",lc);
+		obj.addObject("cat",new Category());
+		obj.addObject("categories",categories);
+//		System.out.println(categories);
 		return obj;
 	}
 	
-//	@RequestMapping("/dispcategory/{cid}")
+	@RequestMapping("/Thankyou")
+	public String Thankyou()
+	{
+		return "Thankyou";
+	}
+	@RequestMapping("/About")
+	public String About()
+	{
+		return "About";
+	}
+	@RequestMapping("/Contact")
+	public String Contact()
+	{
+		return "Contact";
+	}
 	
 }
 	

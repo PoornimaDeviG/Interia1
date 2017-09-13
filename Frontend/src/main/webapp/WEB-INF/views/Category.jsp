@@ -50,6 +50,6 @@ body{position: relative;
 </tr></c1:forEach>
 </table>
 </div>
-<%@ include file="Footer.jsp"%>
+
 </body>
 </html>

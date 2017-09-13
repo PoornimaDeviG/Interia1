@@ -287,8 +287,7 @@ public class OrderController {
 	@RequestMapping(value="/SendMail")
 	public void SendMail() {
 //	System.out.println(21312);
-	Authentication authentication =
-	SecurityContextHolder.getContext().getAuthentication();
+	Authentication authentication =	SecurityContextHolder.getContext().getAuthentication();
 	if (!(authentication instanceof AnonymousAuthenticationToken)) {
 	String currusername = authentication.getName();
 	user = userDao.getUseremail(currusername);

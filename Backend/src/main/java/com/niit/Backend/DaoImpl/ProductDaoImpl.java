@@ -47,7 +47,6 @@ SessionFactory sessionFactory;
 		}
 	}
 
-	@Override
 	public List<Product> getProductByCategory(String cid) {
 		String c1="from Product where cid='"+cid+"'";
 		Query q1=sessionFactory.getCurrentSession().createQuery(c1);
@@ -60,7 +59,7 @@ SessionFactory sessionFactory;
 		}
 }
 
-	@Override
+	
 	public List<Product> list() {
 		List<Product> product=(List<Product>)sessionFactory.getCurrentSession().createCriteria(Product.class)
 				.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();

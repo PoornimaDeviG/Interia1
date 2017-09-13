@@ -13,24 +13,57 @@
     <c:url value="/resources/StyleSheet" var="css"/>
     <c:url value="/resources/js" var="js"/>
     <link type="text/css" rel="stylesheet" href="${css}/StyleSheet.css">
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+#cart-badge {
+    font-size: 12px;
+    background: #f8ee2e	;
+    color: black;
+    margin:0px 20px 0px 20pxpx;
+    padding: 0 5px;
+    vertical-align:top;
+}
+ .badge { 
+ margin-left:0px;
+   padding-left: 200px; 
+  padding-right: 20px; 
+  -webkit-border-radius: 9px; 
+  border-radius: 90px; 
+ } 
+</style>
 
 </head>
+
 
 <div class="maincontainer">
 
             <div class="main" style="background:url(${img}/pattern-07.jpg)">
             <nav>
  <ul style="background:url(${img}/pattern-07.jpg)">
-  <li><a  href="abtus.html" >ABOUT US</a></li>
-  <li><a  href="cntact1.html">CONTACT US</a></li>
+  <li><a  href="<c:url value="/About"/>" >ABOUT US</a></li>
+  <li><a  href="<c:url value="/Contact"/>">CONTACT US</a></li>
   <li class="sr"><input type="text" name="search" placeholder="Search.."></li>
   <c1:if test="${pageContext.request.userPrincipal.name==null}">
   <li style="float:right"><a href="<c:url value="/user"/>">Sign Up</a></li>
   <li  style="float:right"><a href="<c:url value="/login"/>" >Login</a></li>
   </c1:if>
+  
+    
   <c1:if test="${pageContext.request.userPrincipal.name!=null}">
-  <li  style="float:right"><a href="<c:url value="/j_spring_security_logout" />">Logout</a></li>
-  </c1:if>
+  <security:authorize access="hasRole('ROLE_ADMIN')">
+  <li style="float:right"><a href="<c:url value="/j_spring_security_logout" />"> Logout</a></li>
+  <li style="float:right;color:#f8ee2e;font-size:18px;border:none;">Welcome ${pageContext.request.userPrincipal.name}!</li>
+ </security:authorize>
+ <security:authorize access="hasRole('ROLE_USER')">
+<li style="float:right"><a href="<c:url value="/j_spring_security_logout" />"> Logout</a></li>
+<li style="float:right">
+ <a href="<c:url value="/viewcart"/>"><i class="fa fa fa-shopping-cart"></i></a>
+ <lavel id="cart-badge" class="badge">${items}</lavel>
+</li>
+  <li style="float:right;color:#f8ee2e;font-size:18px;border:none;">Welcome ${pageContext.request.userPrincipal.name}!</li>
+  </security:authorize></c1:if>
+  
 </ul>
 </nav>
 <div style="background:url(${img}/pattern-07.jpg)" >

@@ -15,13 +15,7 @@
 border-collapse: collapse;
 border:1px solid black;
 }
-body{position: relative; 
-   min-height: 100%; 
-      max-width:  100%; 
-   background: url(${img}/blur1.png) ; 
-    background-repeat: no-repeat;
-     background-size: cover; 
-   overflow-x: hidden;};
+
 </style>
 </head>
 <body>
@@ -78,6 +72,6 @@ body{position: relative;
 </c1:forEach>
 </table>
 </div>
-<%@ include file="Footer.jsp"%>
+
 </body>
 </html>

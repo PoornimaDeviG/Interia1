@@ -89,12 +89,14 @@ $http.get("http://localhost:8080/Frontend/SendMail")
       Please enter your otp:
         <center><div class="panel-body"><input type="text" ng-app="myApp" ng-controller="myCtrl" name="otp"/></div></center>
 <!--         <div class="panel-footer">Panel Footer</div> -->
+<%-- <form action="/Thankyou" method="post"> --%>
 <input type="submit" value="done"/>
       </div>
     </div>
   </div>
 </div>
-</div></form:form>
+</div>
+</form:form>
           </button>
          
       

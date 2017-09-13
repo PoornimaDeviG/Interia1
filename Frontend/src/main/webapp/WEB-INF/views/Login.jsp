@@ -6,8 +6,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html class="bg">
 <head>
-<%@ include file="Nav.jsp"%>
+
 <title>Login page</title>
+<%@ include file="Nav.jsp"%>
 <c:url value="/resources/Images" var="img"/>
     <c:url value="/resources/StyleSheet" var="css"/>
     <c:url value="/resources/js" var="js"/>

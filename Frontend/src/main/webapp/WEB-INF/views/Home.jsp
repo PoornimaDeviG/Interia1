@@ -6,17 +6,36 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
     <head>
+    
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Home</title>
     <c:url value="/resources/Images" var="img"/>
     <c:url value="/resources/StyleSheet" var="css"/>
     <c:url value="/resources/js" var="js"/>
     <link type="text/css" rel="stylesheet" href="${css}/StyleSheet.css">
+    <style>
+#cart-badge {
+    font-size: 12px;
+    background: #f8ee2e	;
+    color: black;
+    margin:0px 20px 0px 20pxpx;
+    padding: 0 5px;
+    vertical-align:top;
+}
+ .badge { 
+ margin-left:0px;
+   padding-left: 200px; 
+  padding-right: 20px; 
+  -webkit-border-radius: 9px; 
+  border-radius: 90px; 
+ } 
+</style>
      </head>
      <body>
         <div class="maincontainer">
@@ -24,18 +43,26 @@
             <div class="main" >
             <nav>
   <ul style="background:url(${img}/pattern-07.jpg)">
-  <li><a  href="abtus.html" >ABOUT US</a></li>
-  <li><a  href="cntact1.html">CONTACT US</a></li>
+  <li><a  href="<c:url value="/About"/>" >ABOUT US</a></li>
+  <li><a  href="<c:url value="/Contact"/>">CONTACT US</a></li>
   <li class="sr"><input type="text" name="search" placeholder="Search.."></li>
   <c1:if test="${pageContext.request.userPrincipal.name==null}">
   <li style="float:right"><a href="<c:url value="/user"/>">Sign Up</a></li>
   <li  style="float:right"><a href="<c:url value="/login"/>" >Login</a></li>
   </c1:if>
   <c1:if test="${pageContext.request.userPrincipal.name!=null}">
-  <li style="float:right"><a href="<c:url value="/viewcart"/>"><i class="fa fa-shopping-cart"></i></a></li>
+  <security:authorize access="hasRole('ROLE_ADMIN')">
   <li style="float:right"><a href="<c:url value="/j_spring_security_logout" />"> Logout</a></li>
-  
-  </c1:if>
+  <li style="float:right;color:#f8ee2e;font-size:18px;border:none;">Welcome ${pageContext.request.userPrincipal.name}!</li>
+ </security:authorize>
+ <security:authorize access="hasRole('ROLE_USER')">
+<li style="float:right"><a href="<c:url value="/j_spring_security_logout" />"> Logout</a></li>
+<li style="float:right">
+ <a href="<c:url value="/viewcart"/>"><i class="fa fa fa-shopping-cart"></i></a>
+ <lavel id="cart-badge" class="badge">${items}</lavel>
+</li>
+  <li style="float:right;color:#f8ee2e;font-size:18px;border:none;">Welcome ${pageContext.request.userPrincipal.name}!</li>
+  </security:authorize></c1:if>
 </ul>
 </nav></div>
 <div  style="background:url(${img}/pattern-07.jpg)">
@@ -58,11 +85,15 @@
       <div class="nav">
         <ul>
   <li><a  href="http://localhost:8080/Frontend/Home" >HOME</a></li>
-    <li><a  href="http://localhost:8080/Frontend/Furniture" >FURNITURE</a></li>
-    <li><a  href="abtus.html" >LIGHTNING</a></li>
-    <li><a  href="abtus.html" >HOME ACCESSORIES</a></li>
-    <li><a  href="abtus.html">KITCHEN</a></li>
-    <li><a  href="abtus.html">OUT DOORS</a></li>
+  <li> Categories</li>
+  <c1:forEach items="${categories}" var="cat">
+  <a href="<c:url value="/dispcategory/${cat.getCid()}"/>">${cat.getCname()}</a>
+  </c1:forEach>
+<!--     <li><a  href="http://localhost:8080/Frontend/Furniture" >FURNITURE</a></li> -->
+<!--     <li><a  href="abtus.html" >LIGHTNING</a></li> -->
+<!--     <li><a  href="abtus.html" >HOME ACCESSORIES</a></li> -->
+<!--     <li><a  href="abtus.html">KITCHEN</a></li> -->
+<!--     <li><a  href="abtus.html">OUT DOORS</a></li> -->
     <c1:if test="${pageContext.request.userPrincipal.name!=null}">
     <security:authorize access="hasRole('ROLE_ADMIN')">
   <li id="dropdown">
