@@ -85,9 +85,10 @@
       <div class="nav">
         <ul>
   <li><a  href="http://localhost:8080/Frontend/Home" >HOME</a></li>
-  <li> Categories</li>
-  <c1:forEach items="${categories}" var="cat">
-  <a href="<c:url value="/dispcategory/${cat.getCid()}"/>">${cat.getCname()}</a>
+<!--   <li> Categories</li> -->
+  <c1:forEach items="${lcat}" var="cat1">
+  <li><a  href="<c:url value="/dispcategory/${cat1.getCid()}"/>">${cat1.getCname()}</a></li>
+  
   </c1:forEach>
 <!--     <li><a  href="http://localhost:8080/Frontend/Furniture" >FURNITURE</a></li> -->
 <!--     <li><a  href="abtus.html" >LIGHTNING</a></li> -->
@@ -106,6 +107,7 @@
     </div>
   </li>
  </security:authorize></c1:if>
+ 
 </ul>
 </div>
 

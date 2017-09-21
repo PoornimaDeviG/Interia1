@@ -68,8 +68,7 @@ public class HomeController {
 		List<Product> lc=productDao.getProductByCategory(id);
 		obj.addObject("products",lc);
 		obj.addObject("cat",new Category());
-		obj.addObject("categories",categories);
-//		System.out.println(categories);
+		obj.addObject("lcat",categories);
 		return obj;
 	}
 	
