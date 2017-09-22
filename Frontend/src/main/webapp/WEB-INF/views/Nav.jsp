@@ -68,25 +68,32 @@
 </nav>
 <div style="background:url(${img}/pattern-07.jpg)" >
             <img class="image" src="${img}/logo.jpg" alt="Interia" ></div></div>
-<div class="nav">
-        <ul >
-  <li><a  href="<c:url value="/Home"/>">HOME</a></li>
-    <li><a  href="<c:url value="/Furniture"/>">FURNITURE</a></li>
-    <li><a  href="abtus.html">LIGHTNING</a></li>
-    <li><a  href="abtus.html">HOME ACCESSORIES</a></li>
-    <li><a  href="abtus.html">KITCHEN</a></li>
-    <li><a  href="abtus.html">OUT DOORS</a></li>
+ <div class="nav">
+        <ul>
+  <li><a  href="http://localhost:8080/Frontend/Home" >HOME</a></li>
+<!--   <li> Categories</li> -->
+  <c1:forEach items="${lcat}" var="cat1">
+  <li><a  href="<c:url value="/dispcategory/${cat1.getCid()}"/>">${cat1.getCname()}</a></li>
+  
+  </c1:forEach>
+<!--     <li><a  href="http://localhost:8080/Frontend/Furniture" >FURNITURE</a></li> -->
+<!--     <li><a  href="abtus.html" >LIGHTNING</a></li> -->
+<!--     <li><a  href="abtus.html" >HOME ACCESSORIES</a></li> -->
+<!--     <li><a  href="abtus.html">KITCHEN</a></li> -->
+<!--     <li><a  href="abtus.html">OUT DOORS</a></li> -->
     <c1:if test="${pageContext.request.userPrincipal.name!=null}">
     <security:authorize access="hasRole('ROLE_ADMIN')">
   <li id="dropdown">
     <a href="javascript:void(0)" id="dropbtn">ADMIN</a>
     <div id="dropdown-content">
-    <a  href="<c:url value="/category"/>">CATEGORY INFO</a> 
+    
+      <a  href="<c:url value="/category"/>">CATEGORY INFO</a> 
      <a  href="<c:url value="/supplier"/>">SUPPLIER INFO</a>
      <a  href="<c:url value="/product"/>">PRODUCT INFO</a>  
     </div>
   </li>
  </security:authorize></c1:if>
+ 
 </ul>
 </div>
 

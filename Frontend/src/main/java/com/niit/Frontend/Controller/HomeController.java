@@ -24,9 +24,13 @@ public class HomeController {
 	@Autowired
 	CategoryDao categoryDao;
 	@RequestMapping("/")
-	public String home()
+	public ModelAndView home()
 	{
-		return "Home";
+		List<Category> categories= categoryDao.list();
+		ModelAndView obj=new ModelAndView("Home");
+		obj.addObject("lcat",categories);
+		return obj;
+
 	}
 	@RequestMapping("/Home")
 	public String home1()
@@ -64,7 +68,7 @@ public class HomeController {
 	public ModelAndView dispcategory(@PathVariable("cid")String id)
 	{
 		List<Category> categories= categoryDao.list();
-		ModelAndView obj=new ModelAndView("Home");
+		ModelAndView obj=new ModelAndView("Furniture");
 		List<Product> lc=productDao.getProductByCategory(id);
 		obj.addObject("products",lc);
 		obj.addObject("cat",new Category());
