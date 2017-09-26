@@ -33,9 +33,12 @@ public class HomeController {
 
 	}
 	@RequestMapping("/Home")
-	public String home1()
+	public ModelAndView home1()
 	{
-		return "Home";
+		List<Category> categories= categoryDao.list();
+		ModelAndView obj=new ModelAndView("Home");
+		obj.addObject("lcat",categories);
+		return obj;
 	}
 
 //@REQUESTMAPPING("/LOGIN")
@@ -77,19 +80,28 @@ public class HomeController {
 	}
 	
 	@RequestMapping("/Thankyou")
-	public String Thankyou()
+	public ModelAndView Thankyou()
 	{
-		return "Thankyou";
+		ModelAndView obj=new ModelAndView("Thankyou");
+		List<Category> categories= categoryDao.list();
+		obj.addObject("lcat",categories);
+		return obj;
 	}
 	@RequestMapping("/About")
-	public String About()
+	public ModelAndView About()
 	{
-		return "About";
+		ModelAndView obj=new ModelAndView("About");
+		List<Category> categories= categoryDao.list();
+		obj.addObject("lcat",categories);
+		return obj;
 	}
 	@RequestMapping("/Contact")
-	public String Contact()
+	public ModelAndView Contact()
 	{
-		return "Contact";
+		ModelAndView obj=new ModelAndView("Contact");
+		List<Category> categories= categoryDao.list();
+		obj.addObject("lcat",categories);
+		return obj;
 	}
 	
 }

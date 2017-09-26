@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.niit.Backend.Dao.CategoryDao;
 import com.niit.Backend.Dao.ProductDao;
 import com.niit.Backend.Dao.SupplierDao;
+import com.niit.Backend.Model.Category;
 import com.niit.Backend.Model.Product;
 import com.niit.Backend.Model.Supplier;
 
@@ -24,17 +26,25 @@ public class SupplierController {
 	Product product;
 	@Autowired
 	ProductDao productDao;
+	@Autowired
+	Category category;
+	@Autowired
+	CategoryDao categoryDao;
 	@RequestMapping("/supplier")
 	public ModelAndView Supplier() {
 	ModelAndView obj=new ModelAndView("Supplier");
 	obj.addObject("supplier",new Supplier());
 	List<Supplier> li=supplierDao.list();
 	obj.addObject("suppliers",li);
+	List<Category> categories= categoryDao.list();
+	obj.addObject("lcat",categories);
 	return obj;	
 }
 	@RequestMapping("/addsup")
 	public ModelAndView addsup(@ModelAttribute("supplier")Supplier supplier) {
 		ModelAndView obj=new ModelAndView("redirect:/supplier");
+		List<Category> categories= categoryDao.list();
+		obj.addObject("lcat",categories);
 		if(supplierDao.saveorupdate(supplier)==true) {
 		
 			obj.addObject("msg1","supplier added successfully");

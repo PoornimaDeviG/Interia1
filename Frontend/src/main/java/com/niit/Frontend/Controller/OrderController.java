@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.niit.Backend.Dao.BillingDao;
 import com.niit.Backend.Dao.CartDao;
 import com.niit.Backend.Dao.CartItemsDao;
+import com.niit.Backend.Dao.CategoryDao;
 import com.niit.Backend.Dao.OrderDao;
 import com.niit.Backend.Dao.OrderItemsDao;
 import com.niit.Backend.Dao.PayDao;
@@ -29,6 +30,7 @@ import com.niit.Backend.Dao.UserDao;
 import com.niit.Backend.Model.Billing;
 import com.niit.Backend.Model.Cart;
 import com.niit.Backend.Model.CartItems;
+import com.niit.Backend.Model.Category;
 import com.niit.Backend.Model.Order;
 import com.niit.Backend.Model.OrderItems;
 import com.niit.Backend.Model.Pay;
@@ -79,6 +81,11 @@ public class OrderController {
 	UserDao userDao;
 	@Autowired
 	List<CartItems> cartItem1;
+	@Autowired
+	Category category;
+	@Autowired
+	CategoryDao categoryDao;
+	
 
 	@Autowired
 	private JavaMailSender mailSender;
@@ -96,17 +103,25 @@ public class OrderController {
 			cart=user.getCart();
 			
 			session.setAttribute("products", product);
-			cartItem=cartItemDao.get(cart.getCart_Id());
-			
+//			cartItem=cartItemDao.get(cart.getCart_Id());
+			cartItem1=cartItemDao.getlist(cart.getCart_Id());
+			if(cartItem1==null || cartItem1.isEmpty())
+			{
+				return "redirect:/viewcart";
+			}
+			else
+			{
 			billing=billingDao.get(user.getUid());
 			List<Shipping> shippings=shippingDao.getaddbyUser(user.getUid());
-			
 			model.addAttribute("billing",billing);
 			model.addAttribute("user",user);
 			model.addAttribute("shippings",shippings);
 			model.addAttribute("shipping",new Shipping());
+			model.addAttribute("p", product);
 			session.setAttribute("p",product);
-		}
+			List<Category> categories= categoryDao.list();
+			model.addAttribute("lcat", categories);
+		}}
 		return "address";
 	}
 
@@ -119,10 +134,10 @@ public class OrderController {
 			String currusername= authentication.getName();
 			user = userDao.getUseremail(currusername);
 			cart= user.getCart();
-			cartItem=null;
+//			cartItem=null;
 			product=productDao.get(id);
 			billing=billingDao.get(user.getUid());
-			
+			cartItem=cartItemDao.get(cart.getCart_Id());
 //			System.out.println(billing.getCountry());
 //			for(Billing b: billing)
 //			{
@@ -136,6 +151,9 @@ public class OrderController {
 			model.addAttribute("shippings",shippings);
 			model.addAttribute("shipping",new Shipping());
 			session.setAttribute("p",product);
+			model.addAttribute("citem", cartItem);
+			List<Category> categories= categoryDao.list();
+			model.addAttribute("lcat", categories);
 			return "address";
 		}
 		else
@@ -156,8 +174,10 @@ public class OrderController {
 		model.addAttribute("billing",billing);
 		model.addAttribute("shippingAddress",shipping);
 		model.addAttribute("prot",product);
-		model.addAttribute("cartItem",cartItem);
+		model.addAttribute("cartItem1",cartItem1);
 		model.addAttribute("cart",cart);
+		List<Category> categories= categoryDao.list();
+		model.addAttribute("lcat", categories);
 		return "orderconfirm";
 	}
 
@@ -178,6 +198,8 @@ public class OrderController {
 //		List<Card> cards=cardDao.getcardbyuser(userInfo.getuId());
 //		model.addAttribute("cards",cards);
 //		model.addAttribute("card",new Card());
+		List<Category> categories= categoryDao.list();
+		model.addAttribute("lcat", categories);
 
 		return "Payment";
 	}
@@ -212,6 +234,8 @@ public class OrderController {
 			break;
 			
 		}
+		List<Category> categories= categoryDao.list();
+		model.addAttribute("lcat", categories);
 		return "redirect:/Thankyou";
 		
 	}
@@ -280,7 +304,8 @@ public class OrderController {
 		order=new Order();
 		orderItem=new OrderItems();
 		System.out.println(565);
-		return "thankyou";
+		
+		return "Thankyou";
 		
 		
 	}

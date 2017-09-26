@@ -16,10 +16,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.niit.Backend.Dao.CartDao;
 import com.niit.Backend.Dao.CartItemsDao;
+import com.niit.Backend.Dao.CategoryDao;
 import com.niit.Backend.Dao.ProductDao;
 import com.niit.Backend.Dao.UserDao;
 import com.niit.Backend.Model.Cart;
 import com.niit.Backend.Model.CartItems;
+import com.niit.Backend.Model.Category;
 import com.niit.Backend.Model.Product;
 import com.niit.Backend.Model.User;
 
@@ -44,6 +46,10 @@ CartItems cartItems;
 CartItemsDao cartItemDao;
 @Autowired
 HttpSession session;
+@Autowired
+Category category;
+@Autowired
+CategoryDao categoryDao;
 
 @RequestMapping("/addtocart/{pid}")
 public ModelAndView cart(@PathVariable("pid") String id)
@@ -51,6 +57,7 @@ public ModelAndView cart(@PathVariable("pid") String id)
 	Authentication authentication= SecurityContextHolder.getContext().getAuthentication();
 	if(!(authentication instanceof AnonymousAuthenticationToken))
 	{
+		
 		String currusername= authentication.getName();
 		User u =userDao.getUseremail(currusername);
 		if(user==null)
@@ -106,6 +113,8 @@ public String viewcart(Model model,HttpSession session)
 		session.setAttribute("items",c.getTotal_Items());
 		session.setAttribute("items",c.getTotal_Items());
 		session.setAttribute("cartId",c.getCart_Id());
+		List<Category> categories= categoryDao.list();
+		model.addAttribute("lcat", categories);
 		return "Viewcart";
 }
 //	else

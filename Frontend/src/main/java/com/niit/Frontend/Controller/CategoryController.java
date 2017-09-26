@@ -28,6 +28,7 @@ public class CategoryController {
 		obj.addObject("category",new Category());
 		List<Category> lc=categoryDao.list();
 		obj.addObject("categories",lc);
+		obj.addObject("lcat",lc);
 		return obj;	
 	}
 	@RequestMapping("/addcat")

@@ -43,6 +43,7 @@ public ModelAndView product() {
 	obj.addObject("categories",li);
 	obj.addObject("products",lc);
 	obj.addObject("suppliers",ls);
+	obj.addObject("lcat",li);
 	return obj;	
 	
 }

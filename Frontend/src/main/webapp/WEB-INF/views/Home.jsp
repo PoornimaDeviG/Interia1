@@ -6,7 +6,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
     <head>
-    
+<%--     <%@ include file="Nav.jsp"%> --%>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -84,7 +84,7 @@
     </ol>
       <div class="nav">
         <ul>
-  <li><a  href="http://localhost:8080/Frontend/Home" >HOME</a></li>
+  <li><a  href="<c:url value="/Home"/>"/>HOME</a></li>
 <!--   <li> Categories</li> -->
   <c1:forEach items="${lcat}" var="cat1">
   <li><a  href="<c:url value="/dispcategory/${cat1.getCid()}"/>">${cat1.getCname()}</a></li>

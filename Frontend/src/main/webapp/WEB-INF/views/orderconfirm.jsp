@@ -92,24 +92,60 @@ button {
 	<th style="text-align:center">SELLER NAME</th>
 	<th style="text-align:center">PRICE</th>
   </tr>
-  <c1:if test="${prot!=null}">
-  <tr>
+<%--   <c1:if test="${prot!=null}"> --%>
+<%-- <%-- <c1:forEach items="${citem}" var="pro"> --%> 
+<!--   <tr> -->
+<%--   <td><img src="<c:url value='/resources/Images/${prot.getPid()}.jpg'/>" style="width:120px; height:100px;left:100px;bottom:1px;"></td> --%>
+<%--   <td style="text-align:center">${prot.getPname()}</td> --%>
+<%--   <td style="text-align:center">${prot.getCategory().getCname()}</td> --%>
+<%--   <td style="text-align:center">${prot.getSupplier().getSname()}</td> --%>
+<%--   <td style="text-align:center">${prot.getPprice()}</td> --%>
+<!--   </tr> -->
+<%-- <%--   </c1:forEach> --%> 
+<%-- </c1:if> --%>
+  
+<%--   <c1:if test="${prot!=null}"> --%>
+<!--   <tr> -->
+<%--   <td><img src="<c:url value='/resources/Images/${prot.getPid()}.jpg'/>" style="width:120px; height:100px;left:100px;bottom:1px;"></td> --%>
+<%--   <td style="text-align:center">${prot.getPname()}</td> --%>
+<%--   <td style="text-align:center">${prot.getCategory().getCname()}</td> --%>
+<%--   <td style="text-align:center">${prot.getSupplier().getSname()}</td> --%>
+<%--   <td style="text-align:center">${prot.getPprice()}</td> --%>
+<%-- </tr> </c1:if> --%>
+<%-- <c1:elif test="${prot!=null}"> --%>
+<%--      <c1:forEach items="${cartItem1}" var="car"> --%>
+<!--      <tr> -->
+<%--      <td style="text-align:center"><img src="<c:url value='/resources/Images/${car.getProduct().getPid()}.jpg'/>" style="width:px; height:100px;left:100px;bottom:1px;"></td> --%>
+<%--      <td style="text-align:center">${car.getProduct().getPname()}</td> --%>
+<%--      <td style="text-align:center">${car.getProduct().getCategory().getCname()}</td> --%>
+<%--      <td style="text-align:center">${car.getProduct().getSupplier().getSname()}</td> --%>
+<%--      <td style="text-align:center">${car.getProduct().getPprice()}</td> --%>
+<%--      </tr></c1:forEach></c1:elif> --%>
+
+<c1:choose>
+<c1:when test="${prot!=null}">
+<tr> 
   <td><img src="<c:url value='/resources/Images/${prot.getPid()}.jpg'/>" style="width:120px; height:100px;left:100px;bottom:1px;"></td>
   <td style="text-align:center">${prot.getPname()}</td>
   <td style="text-align:center">${prot.getCategory().getCname()}</td>
   <td style="text-align:center">${prot.getSupplier().getSname()}</td>
   <td style="text-align:center">${prot.getPprice()}</td>
-  </tr></c1:if>
-  
-  <c1:if test="${prot==null}">
-     <c1:forEach items="${cartItems}" var="c1">
-     <tr>
-     <td style="text-align:center"><img src="<c:url value='/resources/Images/${c1.getPid()}.jpg'/>" style="width:px; height:100px;left:100px;bottom:1px;"></td>
-     <td style="text-align:center">${c1.getPname()}</td>
-     <td style="text-align:center">${c1.getCategory().getCname()}</td>
-     <td style="text-align:center">${c1.getSupplier().getSname()}</td>
-     <td style="text-align:center">${c1.getPprice()}</td>
-     </tr></c1:forEach></c1:if>
+</tr>
+</c1:when>
+<c1:otherwise>
+<c1:forEach items="${cartItem1}" var="car">
+ <tr>
+     <td style="text-align:center"><img src="<c:url value='/resources/Images/${car.getProduct().getPid()}.jpg'/>" style="width:px; height:100px;left:100px;bottom:1px;"></td>
+     <td style="text-align:center">${car.getProduct().getPname()}</td>
+     <td style="text-align:center">${car.getProduct().getCategory().getCname()}</td>
+     <td style="text-align:center">${car.getProduct().getSupplier().getSname()}</td>
+     <td style="text-align:center">${car.getProduct().getPprice()}</td>
+    </tr>
+    </c1:forEach>
+</c1:otherwise>
+</c1:choose>
+
+
 </table>
 <a href="<c:url value="/pay"/>"><button type="Submit" name="Submit" style="color:MediumVioletRed;font-size:20px;">Pay</button></a>
 </body>

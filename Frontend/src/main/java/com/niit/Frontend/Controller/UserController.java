@@ -10,9 +10,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.niit.Backend.Dao.BillingDao;
+import com.niit.Backend.Dao.CategoryDao;
 import com.niit.Backend.Dao.UserDao;
 import com.niit.Backend.Model.Billing;
 import com.niit.Backend.Model.Cart;
+import com.niit.Backend.Model.Category;
 import com.niit.Backend.Model.User;
 
 @Controller
@@ -25,6 +27,10 @@ UserDao userDao;
 Billing billing;
 @Autowired
 BillingDao billingdao;
+@Autowired
+Category category;
+@Autowired 
+CategoryDao categoryDao;
 @RequestMapping("/user")
 public ModelAndView User() {
 	ModelAndView obj=new ModelAndView("User");
@@ -32,6 +38,8 @@ public ModelAndView User() {
 	obj.addObject("user",new User());
 	List<User> li=userDao.list();
 	obj.addObject("users",li);
+	List<Category> categories= categoryDao.list();
+	obj.addObject("lcat",categories);
 	return obj;	
 }
 @RequestMapping("/adduser")

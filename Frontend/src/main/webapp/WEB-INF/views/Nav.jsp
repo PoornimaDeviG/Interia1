@@ -34,8 +34,7 @@
 </style>
 
 </head>
-
-
+<body>
 <div class="maincontainer">
 
             <div class="main" style="background:url(${img}/pattern-07.jpg)">
@@ -74,7 +73,6 @@
 <!--   <li> Categories</li> -->
   <c1:forEach items="${lcat}" var="cat1">
   <li><a  href="<c:url value="/dispcategory/${cat1.getCid()}"/>">${cat1.getCname()}</a></li>
-  
   </c1:forEach>
 <!--     <li><a  href="http://localhost:8080/Frontend/Furniture" >FURNITURE</a></li> -->
 <!--     <li><a  href="abtus.html" >LIGHTNING</a></li> -->
